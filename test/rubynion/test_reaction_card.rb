@@ -1,6 +1,4 @@
 require "helper"
-require "rubynion/card"
-require "rubynion/reaction_card"
 
 module Rubynion
 	class TestReactionCard < Test::Unit::TestCase
