@@ -35,5 +35,11 @@ module Rubynion
 		def test_reaction_card?
 			assert_equal(false, @card.reaction_card?)
 		end
+
+		def test_equal?
+			different_card = Card.new(:name => "dummy", :cost => 0)
+			assert_equal(@card, @card)
+			assert_not_equal(@card, different_card)
+		end
 	end
 end

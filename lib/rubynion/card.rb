@@ -18,11 +18,15 @@ module Rubynion
 		end
 
 		def has_append_effect?
-			@append_effect.present?
+			!@append_effect.nil?
 		end
 
 		def append_effect
-			@append_effect.call
+			if has_append_effect?
+				@append_effect.call
+			else
+				raise StandardError.new("no append effect.")
+			end
 		end
 	end
 end
