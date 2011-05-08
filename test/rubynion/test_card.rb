@@ -1,5 +1,4 @@
 require 'helper'
-require 'rubynion/card'
 
 module Rubynion
 	class TestCard < Test::Unit::TestCase
@@ -13,6 +12,21 @@ module Rubynion
 		
 		def test_cost
 			assert_equal(0, @card.cost)
+		end
+
+		def test_attribute
+			@card.attribute({:cost, 2})
+			assert_equal(2, @card.cost)
+		end
+
+		def test_get
+			@card.attribute({:cost, 2})
+			assert_equal(2, @card.cost)
+		end
+
+		def test_need
+			@card.attribute({:cost, 2})
+			assert_equal(2, @card.cost)
 		end
 
 		#  *_card? be false
