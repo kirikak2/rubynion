@@ -27,13 +27,26 @@ module Rubynion
 			assert_equal(0, @card_manager.used_cards.length)
 		end
 
-		# draw 10 over card, but cannot draw over the number of pooled_cards
+		# draw over the number of pooled_cards when used_cards empty, cannot draw 
 		def test_draw_card_draw_10_over_cards
 			@card_manager.draw_card(15)
 			assert_equal(10, @card_manager.handed_cards.length)
 			assert_equal(0, @card_manager.pooled_cards.length)
 			assert_equal(0, @card_manager.staged_cards.length)
 			assert_equal(0, @card_manager.used_cards.length)
+		end
+
+		# draw over the number of pooled_cards when used_card not empty,
+		# used_card shuffle and move to pooled_card, and draw left pooled_card
+		def test_draw_card_draw_8_cards
+			@card_manager.turn_start
+			@card_manager.turn_end
+			assert_nothing_raised{
+				@card_manager.draw_card(8)
+			}
+			assert_equal(0, @card_manager.used_cards.length)
+			assert_equal(2, @card_manager.pooled_cards.length)
+			assert_equal(8, @card_manager.handed_cards.length)
 		end
 
 		# turn start
@@ -64,10 +77,10 @@ module Rubynion
 			}
 		end
 		
-		# thrown card
-		def test_thrown_card
+		# scrap card
+		def test_scrap_card
 			@card_manager.turn_start
-			@card_manager.thrown_card [1, 2, 3]
+			@card_manager.scrap_card [1, 2, 3]
 			assert_equal(2, @card_manager.handed_cards.length)
 			assert_equal(5, @card_manager.pooled_cards.length)
 			assert_equal(0, @card_manager.staged_cards.length)
@@ -75,18 +88,18 @@ module Rubynion
 		end
 
 		# thrown invalid card
-		def test_thrown_card_invalid_card
+		def test_scrap_card_invalid_card
 			@card_manager.turn_start
 			assert_raise(StandardError, "11 is not found in handed_cards."){
-				@card_manager.thrown_card [1, 2, 11]
+				@card_manager.scrap_card [1, 2, 11]
 			}
 		end
 
-		# thrown invalid argument
-		def test_thrown_card_invalid_argument
+		# scrap invalid argument
+		def test_scrap_card_invalid_argument
 			@card_manager.turn_start
 			assert_raise(ArgumentError, "thrown_card argument must be Array class."){
-				@card_manager.thrown_card 1
+				@card_manager.scrap_card 1
 			}
 		end
 

@@ -44,22 +44,22 @@ module Rubynion
 			end
 		end
 
-		# Throw card to Dustbox
-		def thrown_card(thrown_cards)
-			if thrown_cards.class != Array
-				raise ArgumentError.new("thrown_card argument must be Array class.")
+		# Scrap card to Dustbox
+		def scrap_card(scrap_cards)
+			if scrap_cards.class != Array
+				raise ArgumentError.new("scrap_card argument must be Array class.")
 			end
-			thrown_cards.each do |thrown_card|
-				thrown_card_in_hand = @handed_cards.find do |handed_card|
-					handed_card === thrown_card
+			scrap_cards.each do |scrap_card|
+				scrap_card_in_hand = @handed_cards.find do |handed_card|
+					handed_card === scrap_card
 				end
-				if thrown_card_in_hand.nil?
-					raise StandardError.new("#{thrown_card_in_hand} is not found in handed_cards.")
+				if scrap_card_in_hand.nil?
+					raise StandardError.new("#{scrap_card_in_hand} is not found in handed_cards.")
 				end
 			end
-			thrown_cards.each do |thrown_card|
+			scrap_cards.each do |scrap_card|
 				@handed_cards.delete_if do |handed_card|
-					handed_card === thrown_card
+					handed_card === scrap_card
 				end
 			end
 		end
