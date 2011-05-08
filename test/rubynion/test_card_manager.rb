@@ -1,5 +1,4 @@
 require 'helper'
-require 'rubynion/card_manager'
 
 module Rubynion
 	class TestCardManager < Test::Unit::TestCase
@@ -119,6 +118,10 @@ module Rubynion
 			@card_manager.pooled_cards.clear
 			@card_manager.used_cards.concat [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 			@card_manager.reset_cards
+			assert_equal(0, @card_manager.used_cards.length)
+			assert_equal(0, @card_manager.handed_cards.length)
+			assert_equal(0, @card_manager.staged_cards.length)
+			assert_equal(10, @card_manager.pooled_cards.length)
 		end
 
 		# reset card if poold_cards is not empty
