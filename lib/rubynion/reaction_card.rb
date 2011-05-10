@@ -1,6 +1,6 @@
 module Rubynion
   module ReactionCard
-		include ActionCard
+    include ActionCard
     def reaction_card?
       true
     end
