@@ -1,12 +1,12 @@
 require 'helper'
 
 module Rubynion
-  class TestCardManager < Test::Unit::TestCase
+  class TestCardDeck < Test::Unit::TestCase
     # card_list is mock data.
     # it should write Card class.
     def setup
       card_list = [1,2,3,4,5,6,7,8,9,10] 
-      @card_manager = CardManager.new(card_list) 
+      @card_manager = CardDeck.new(card_list) 
     end
 
     # At first, Pooled_cards has 10 cards.
@@ -60,7 +60,7 @@ module Rubynion
     # use card
     def test_use_card
       @card_manager.turn_start
-      @card_manager.use_card(3)
+      assert_equal(3, @card_manager.use_card(3))
       assert_equal(4, @card_manager.handed_cards.length)
       assert_equal(1, @card_manager.staged_cards.length)
       assert_equal(3, @card_manager.staged_cards[0])

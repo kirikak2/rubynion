@@ -36,39 +36,40 @@ end
 
 module Rubynion
   class CardDefiner
+    attr_reader :card
     def initialize(name)
       @card = Card.new(:name => name)
       self
     end
 
-    def action_card(&block)
+    def action(&block)
       @card.extend(ActionCard)
       block.call(@card)
-      @card
+      self
     end
 
-    def treasure_card(&block)
+    def treasure(&block)
       @card.extend(TreasureCard)
       block.call(@card)
-      @card
+      self
     end
 
-    def victory_card(&block)
+    def victory(&block)
       @card.extend(VictoryCard)
       block.call(@card)
-      @card
+      self
     end
 
-    def reaction_card(&block)
+    def reaction(&block)
       @card.extend(ReactionCard)
       block.call(@card)
-      @card
+      self
     end
 
-    def curse_card(&block)
+    def curse(&block)
       @card.extend(CurseCard)
       block.call(@card)
-      @card
+      self
     end
   end
 end

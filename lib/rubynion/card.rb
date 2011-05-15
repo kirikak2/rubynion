@@ -28,20 +28,8 @@ module Rubynion
     alias need attribute
     alias get attribute
 
-    def append_effect(&block)
-      @append_effect = block
-    end
-
-    def has_append_effect?
-      !@append_effect.nil?
-    end
-
-    def append_effect
-      if has_append_effect?
-        @append_effect.call
-      else
-        raise StandardError.new("no append effect.")
-      end
+    def use
+      raise StandardError.new("no action specified.")
     end
   end
 end

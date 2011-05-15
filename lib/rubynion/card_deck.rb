@@ -1,6 +1,6 @@
 module Rubynion
   # Rubynion player card manager
-  class CardManager
+  class CardDeck
     # attr_reader change to be private access.
     attr_reader :pooled_cards, :used_cards, :staged_cards, :handed_cards
     def initialize(cards)
@@ -39,6 +39,7 @@ module Rubynion
         @handed_cards.delete_if do |card|
           card === used_card_in_hand
         end
+        return used_card_in_hand
       else
         raise StandardError.new("#{used_card} is not found in handed_cards.")
       end

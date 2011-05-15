@@ -55,5 +55,9 @@ module Rubynion
       assert_equal(@card, @card)
       assert_not_equal(@card, different_card)
     end
+
+    def test_use
+      flunk("no test specified.")
+    end
   end
 end

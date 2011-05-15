@@ -3,7 +3,7 @@ module Rubynion
 	require "#{ROOT}/rubynion/card_definer"
 	autoload :Runner,	"#{ROOT}/rubynion/runner"
 	autoload :Command, "#{ROOT}/rubynion/command"
-	autoload :CardManager, "#{ROOT}/rubynion/card_manager"
+	autoload :CardDeck, "#{ROOT}/rubynion/card_deck"
 	autoload :Card,	"#{ROOT}/rubynion/card"
 	autoload :CurseCard, "#{ROOT}/rubynion/curse_card"
 	autoload :ActionCard, "#{ROOT}/rubynion/action_card"
